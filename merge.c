@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_SIZE 1000000
+#define MAX_SIZE 10000000
 
 void merge(int arr[], int left[], int left_size, int right[], int right_size) {
     int i, j, k;
@@ -40,8 +40,9 @@ void merge_sort(int arr[], int size) {
     }
 
     int mid = size / 2;
-    int left[mid];
-    int right[size - mid];
+    
+    int* left = (int*) calloc(mid, sizeof(int));
+    int* right = (int*) calloc(size - mid, sizeof(int));
 
     for (int i = 0; i < mid; i++) {
         left[i] = arr[i];
@@ -67,10 +68,10 @@ int main() {
     // Generate random numbers for the array
     srand(time(NULL));
     for (int i = 0; i < size; i++) {
-        arr[i] = rand() % 10000;
+        //arr[i] = rand() % 10000;
+        arr[size-i-1] = i;
     }
 
-    printf("não morri ainda 1");
 
     // Check if the array is already sorted
     // int sorted = 1;
@@ -87,9 +88,7 @@ int main() {
     //}
 
     clock_t start = clock();
-    printf("não morri ainda 2");
     merge_sort(arr, size);
-    printf("morri");
     clock_t end = clock();
 
     // printf("Sorted array: ");
